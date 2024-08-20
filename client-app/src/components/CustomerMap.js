@@ -10,6 +10,7 @@ const CustomerMap = () => {
   const [locations, setLocations] = useState([]);
   const [map, setMap] = useState(null);
 
+
   useEffect(() => {
     // Fetch customer data from the API
     axios.get(`${process.env.REACT_APP_API_URL}/customers/city`)
@@ -28,8 +29,7 @@ const CustomerMap = () => {
           }
 
           // If not saved, fetch coordinates from OpenCageData API
-          const apiKey = 'd34681d6ccb9443da61c8803219e86d4';
-          const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${apiKey}&limit=1`;
+          const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(city)}&key=${process.env.REACT_APP_API_KEY}&limit=1`;
 
           try {
             const res = await axios.get(url);
